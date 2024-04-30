@@ -1,4 +1,5 @@
 <?php
+//variables snack 1
 $basketGames = [
     [
         "home team" => "Real Madrid",
@@ -20,6 +21,13 @@ $basketGames = [
     ]
 ];
 
+//variables snack 2
+if(isset($name) && isset($email) && isset($age)) {
+    $name = $_GET["name"];
+    $email = $_GET["mail"];
+    $age = $_GET["age"];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +36,7 @@ $basketGames = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Badwords</title>
+    <title>PHP Snack 1</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -43,9 +51,22 @@ $basketGames = [
 </head>
 
 <body>
-    <div class="container mb-3 my-3 ">
-        <form action="index.php" method="POST">
-            <input type="text" class="form-control mb-3" name="toCensure" id="toCensure" >
+    <section class="container">
+        <h2>Risultati giornata 12</h2>
+        <div>
+            <?php
+            foreach ($basketGames as $key => $value) {
+                echo $value["home team"] . " - " . $value["visiting team"] . " || " . $value["home team score"] . " - " . $value["visiting team score"] . "<br>";
+            }
+            ?>
+        </div>
+    </section>
+
+<div class="container mb-3 my-3 ">
+        <form action="index.php" method="GET">
+            <input type="text" class="form-control mb-3" name="name" id="name" >
+            <input type="text" class="form-control mb-3" name="mail" id="mail" >
+            <input type="text" class="form-control mb-3" name="age" id="age" >
             <input type="submit" value="Invia" class="btn btn-primary my-3 ">
         </form>
     </div>
