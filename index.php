@@ -22,11 +22,23 @@ $basketGames = [
 ];
 
 //variables snack 2
-if(isset($name) && isset($email) && isset($age)) {
+$access = false;
+$printaccess = false;
+if (isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["age"])) {
     $name = $_GET["name"];
-    $email = $_GET["mail"];
+    $email = $_GET["email"];
     $age = $_GET["age"];
-}
+    if ($name > 3 && $email && str_contains($email, "@") && str_contains($email, ".") && !is_nan($age)) {
+        $access = true;
+        
+    } else {
+        $access = false;
+        $printaccess = true;
+    }
+};
+
+
+
 
 ?>
 
@@ -62,14 +74,23 @@ if(isset($name) && isset($email) && isset($age)) {
         </div>
     </section>
 
-<div class="container mb-3 my-3 ">
+    <div class="container mb-3 my-3 <?php $access ? 'd-none' : 'd-block' ?> ">
         <form action="index.php" method="GET">
-            <input type="text" class="form-control mb-3" name="name" id="name" >
-            <input type="text" class="form-control mb-3" name="mail" id="mail" >
-            <input type="text" class="form-control mb-3" name="age" id="age" >
+            <label for="name">Nome</label>
+            <input type="text" class="form-control mb-3" name="name" id="name">
+            <label for="email">Email</label>
+            <input type="text" class="form-control mb-3" name="email" id="email">
+            <label for="age">Eta'</label>
+            <input type="text" class="form-control mb-3" name="age" id="age">
             <input type="submit" value="Invia" class="btn btn-primary my-3 ">
         </form>
     </div>
+    <section class="container">
+        <h2>accesso consentito</h2>
+        <h2>accesso negato</h2>
+    </section>
+
+    
 </body>
 
 </html>
